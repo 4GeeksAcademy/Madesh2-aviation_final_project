@@ -27,10 +27,19 @@ def parse_mdb(file:str) -> None:
     # Load database and extract aircraft table
     db=AccessParser(f'../data/raw/{file}')
     table=db.parse_table('aircraft')
+   
 
     # Convert to dataframe and save as csv
     table_df=pd.DataFrame.from_dict(table)
     table_df.to_csv('../data/raw/aircraft.csv', index=False)
+    
+    # Load database and extract events table
+    db1=AccessParser(f'../data/raw/{file}')
+    table1=db1.parse_table('events')
+
+    # Convert to dataframe and save as csv
+    table1_df=pd.DataFrame.from_dict(table1)
+    table1_df.to_csv('../data/raw/events.csv', index=False)
 
 
 def get_ontime_links(url:str) -> list:
