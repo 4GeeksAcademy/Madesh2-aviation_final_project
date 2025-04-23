@@ -25,8 +25,11 @@ def parse_mdb(file:str) -> None:
     '''Parses MDB file and saves aircraft table to csv.'''
     
     # Load database and extract aircraft table
-    db=AccessParser(f'../data/raw/{file}')
-    
+    #db=AccessParser(f'../data/raw/{file}')
+    db=AccessParser("/workspaces/Madesh2-aviation_final_project/data/raw/avall.mdb")
+    table = db.parse_table('events')
+    table_df=pd.DataFrame.from_dict(table)
+    table_df.to_csv('../data/raw/events.csv', index=False)
     # Get all table names 
     #table=db.parse_table('aircraft')
     #table=db.parse_table('injury')
